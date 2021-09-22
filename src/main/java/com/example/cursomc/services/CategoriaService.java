@@ -25,4 +25,5 @@ public class CategoriaService {
 		obj.setId(null);
 		return categoriaRepository.save(obj);
 	}
+	
 }
