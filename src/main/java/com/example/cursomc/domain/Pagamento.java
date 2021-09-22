@@ -12,6 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.example.cursomc.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*Para gerar TaBelas que são
  *herdam dessa classe usamos
@@ -35,6 +36,7 @@ public abstract class Pagamento implements Serializable{
 	 * Para id Pagamento ser o
 	 * mesmo do id Pedido
 	 */
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId
