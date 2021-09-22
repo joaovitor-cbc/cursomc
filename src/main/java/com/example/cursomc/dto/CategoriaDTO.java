@@ -2,6 +2,10 @@ package com.example.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.example.cursomc.domain.Categoria;
 
 public class CategoriaDTO implements Serializable{
@@ -10,6 +14,8 @@ public class CategoriaDTO implements Serializable{
 	
 	private Integer id;
 	
+	@NotEmpty(message = "preenchimento obrigatorio.")
+	@Length(min = 5, max = 80, message = "Minimo de 5 e o maximo de 80 caracteres.")
 	private String nome;
 	
 	public CategoriaDTO(Categoria obj) {
