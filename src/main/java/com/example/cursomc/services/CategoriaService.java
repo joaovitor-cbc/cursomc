@@ -3,6 +3,8 @@ package com.example.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -27,7 +29,8 @@ public class CategoriaService {
 		return categoria.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado" + 
 		id + ", Tipo" + Categoria.class.getName()));
 	}
-
+	
+	@Transactional
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return categoriaRepository.save(obj);
@@ -62,8 +65,8 @@ public class CategoriaService {
 		return categoriaRepository.findAll(pageRequest);
 	}
 	
-	public Categoria fromDTO(CategoriaDTO objDTO) {
-		return new Categoria(objDTO.getId(), objDTO.getNome());
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 	
 	private void updateData(Categoria newObj, Categoria obj) {

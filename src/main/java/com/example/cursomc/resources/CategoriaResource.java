@@ -35,8 +35,8 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO){
-		Categoria obj = categoriaService.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto){
+		Categoria obj = categoriaService.fromDTO(objDto);
 		obj = categoriaService.insert(obj);
 		/*Conforme status code 201
 		 *do protocolo http quando
@@ -51,8 +51,8 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id){
-		Categoria obj = categoriaService.fromDTO(objDTO);
+	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id){
+		Categoria obj = categoriaService.fromDTO(objDto);
 		obj.setId(id);
 		obj = categoriaService.update(obj);
 		return ResponseEntity.noContent().build();
@@ -67,8 +67,8 @@ public class CategoriaResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> list = categoriaService.findAll();
-		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
+		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value = "/page" ,method = RequestMethod.GET)
@@ -78,8 +78,8 @@ public class CategoriaResource {
 			@RequestParam(value = "direction", defaultValue = "ASC")String direction,
 			@RequestParam(value = "orderBy", defaultValue = "nome")String orderBy) {
 		Page<Categoria> listPage = categoriaService.findPage(page, linesPerPage, direction, orderBy);
-		Page<CategoriaDTO> listDTO = listPage.map(obj -> new CategoriaDTO(obj));
-		return ResponseEntity.ok().body(listDTO);
+		Page<CategoriaDTO> listDto = listPage.map(obj -> new CategoriaDTO(obj));
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 }
