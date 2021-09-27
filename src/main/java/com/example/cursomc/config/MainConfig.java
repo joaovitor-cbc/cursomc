@@ -44,12 +44,10 @@ public class MainConfig {
 		}
 		
 		if(db.equals("prod")) {
-			URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-			String username = dbUri.getUserInfo().split(":")[0];
-			String password = dbUri.getUserInfo().split(":")[1];
-			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath()
-					+ "?sslmode=require";
+			String username = "postgres";
+			String password = "admin";
+			String dbUrl = "jdbc:postgresql://localhost:5432/curso_spring";
 
 			BasicDataSource basicDataSource = new BasicDataSource();
 			basicDataSource.setUrl(dbUrl);
