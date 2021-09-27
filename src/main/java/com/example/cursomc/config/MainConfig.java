@@ -1,6 +1,5 @@
 package com.example.cursomc.config;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.commons.dbcp2.BasicDataSource;
