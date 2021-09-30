@@ -67,6 +67,24 @@ public class ClienteService {
 				id + ", Tipo" + Cliente.class.getName()));
 	}
 	
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		Cliente obj = clienteRepository.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		}
+		return obj;
+	}
+	
+	public List<Cliente> findAll() {
+		return clienteRepository.findAll();
+	}
+	
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
@@ -91,9 +109,6 @@ public class ClienteService {
 		}
 	}
 
-	public List<Cliente> findAll() {
-		return clienteRepository.findAll();
-	}
 	
 	/*Metodo para retorna
 	 * uma Page com limites
@@ -102,6 +117,11 @@ public class ClienteService {
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String direction, String orderBy) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return clienteRepository.findAll(pageRequest);
+	}
+	
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDTO) {
@@ -135,11 +155,6 @@ public class ClienteService {
 		}
 		return cli;
 		
-	}
-	
-	private void updateData(Cliente newObj, Cliente obj) {
-		newObj.setNome(obj.getNome());
-		newObj.setEmail(obj.getEmail());
 	}
 	
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
