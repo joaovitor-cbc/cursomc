@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.cursomc.domain.Pedido;
 import com.example.cursomc.services.PedidoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/pedidos")
 public class PedidoResource {
@@ -25,12 +27,14 @@ public class PedidoResource {
 	@Autowired
 	private PedidoService pedidoService;
 	
+	@ApiOperation(value="Busca pedido")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
 	public ResponseEntity<Pedido> listar(@PathVariable Integer id) {
 		Pedido obj = pedidoService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@ApiOperation(value="Inseri um pedido")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Pedido obj){
 		obj = pedidoService.insert(obj);
@@ -46,6 +50,7 @@ public class PedidoResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value="Busca pagindada de pedidos")
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<Page<Pedido>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 

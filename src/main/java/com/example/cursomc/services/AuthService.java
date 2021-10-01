@@ -47,7 +47,8 @@ public class AuthService {
 		}
 		return new String(vet);
 	}
-
+	
+	//gera senha aleatoria
 	private char randomChar() {
 		int opt = random.nextInt(3);
 		if (opt == 0) { // gera um digito

@@ -24,6 +24,10 @@ import com.example.cursomc.dto.ClienteDTO;
 import com.example.cursomc.dto.ClienteNewDTO;
 import com.example.cursomc.services.ClienteService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteResource {
@@ -31,18 +35,21 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@ApiOperation(value="Busca por id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
 		Cliente cliente = clienteService.find(id);
 		return ResponseEntity.ok().body(cliente);
 	}
 	
+	@ApiOperation(value="Busca por e-mail")
 	@RequestMapping(value="/email", method=RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@RequestParam(value="value") String email) {
 		Cliente obj = clienteService.findByEmail(email);
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@ApiOperation(value="Inseri um cliente")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
 		Cliente obj = clienteService.fromDTO(objDto);
@@ -59,6 +66,7 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation(value="Atualiza um cliente")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
 		Cliente obj = clienteService.fromDTO(objDto);
@@ -67,6 +75,10 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Apaga um cliente")
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Não é possível excluir porque há pedidos relacionados"),
+			@ApiResponse(code = 404, message = "Código inexistente") })
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.DELETE)
 	public ResponseEntity<Cliente> delete(@PathVariable Integer id) {
@@ -74,6 +86,7 @@ public class ClienteResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ApiOperation(value="Busca todos clientes")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ClienteDTO>> findAll() {
@@ -82,6 +95,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	@ApiOperation(value="Busca Paginada de clientes")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value = "/page" ,method = RequestMethod.GET)
 	public ResponseEntity<Page<ClienteDTO>> findAll(
@@ -94,6 +108,7 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
+	@ApiOperation(value="Envio do profile de imagem do cliente")
 	@RequestMapping(value="/picture", method=RequestMethod.POST)
 	public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
 		URI uri = clienteService.uploadProfilePicture(file);
