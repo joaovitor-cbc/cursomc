@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>cursomc</artifactId>
+	<artifactId>ecommerceapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>cursomc</name>
+	<name>ecommerceapi</name>
 	<description>Project for Spring Boot</description>
 
 	<parent>

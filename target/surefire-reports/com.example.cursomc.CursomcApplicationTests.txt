@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.example.cursomc.CursomcApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.476 s - in com.example.cursomc.CursomcApplicationTests
