@@ -4,15 +4,15 @@
 </h2>
 
 <h2>🧾 Sobre</h2>
-<p> Projeto simples de estudo sobre uma API Rest usando Java com Spring Boot, Spring Data JPA, Spring Security e banco de dados MySQL/PostgreSQL/H2.Uso de JPA com Hibernate para mapeamento objeto-relacional, envio de email com SMTP da Google com JavaMailSender/MailSender e thymeleaf, armazenamento de imagens com storage S3 da Amazon, autenticação e autorização com tokens JWT.Também validação de dados Jakarta Bean Validation/Hibernate Validator, tratamento de exceções, uso adequado do protocolo HTTP no padrão REST, segurança, CORS e documentação com Swagger.</p>
+<p> Projeto simples de estudo sobre uma API Rest usando Java com Spring Boot, Spring Data JPA, Spring Security e banco de dados MySQL/PostgreSQL/H2.Uso de JPA com Hibernate para mapeamento objeto-relacional, envio de email com SMTP da Google com JavaMailSender/MailSender e thymeleaf, armazenamento de imagens com storage S3 da Amazon, autenticação e autorização com tokens JWT.Também validação de dados Jakarta Bean Validation/Hibernate Validator, tratamento de exceções, uso adequado do protocolo HTTP no padrão REST, segurança, CORS e documentação com Swagger.E implantação na nuvem usando a plataforma Heroku.</p>
 
 <h2>🔧 Ferramentas</h2>
 <ul>
     <li>
-    <a href="https://adoptopenjdk.net/" target="_blank""> Java 11</a>
+    <a href="https://adoptopenjdk.net/" target="_blank"> Java 11</a>
     </li>
     <li>
-    <a href="https://spring.io/projects/spring-boot" target="_blank"">Spring Boot</a>
+    <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a>
     </li>
     <li>
     <a href="https://spring.io/projects/spring-data-jpa" target="_blank">Spring Data JPA</a>
@@ -61,14 +61,17 @@
     </li>
     <li>
     <a href="https://swagger.io/" target="_blank">Swagger</a>
-    </li>                
+    </li>
+    <li>
+    <a href="https://heroku.com/" target="_blank">Heroku</a>
+    </li>                  
 </ul>
 
 <br/>
 <h2>❓ Como funciona</h2>
 <br/>
 
-<p>Como essa api simula um e-commerce, você pode começar verificando os produtos e caso queira realizar um pedido deverá realizar um cadastro de um cliente e no header do response terá o recurso location com a uri do cliente que foi cadastrado através dela poderá buscar o cliente para ter acesso a informações caso necessário, sendo assim poderá fazer o login no sistema onde o response retornará no header o Authorization comum token para você conseguir fazer o pedidos e ter acesso aos demais endpoints do sistema.</p>
+<p>Como essa api simula um e-commerce, você pode começar verificando os produtos e caso queira realizar um pedido deverá realizar um cadastro de um cliente e no header do response terá o recurso location com a uri do cliente que foi cadastrado através dela poderá buscar o cliente para ter acesso a informações caso necessário não esqueça de informa um email válido quando cadastrar um cliente, pois quando realizar um pedido será enviado a confirmação do pedido no e-mail do cliente, sendo assim poderá fazer o login no sistema onde o response retornará no header o Authorization com um token para você conseguir fazer o pedidos e ter acesso aos demais endpoints do sistema.</p>
 <br/>
 
 <h1>Cadastrando cliente</h1>
@@ -110,6 +113,13 @@
 <h1>
   <img 
     src="imagens/consultando-pedido.gif"
+  />
+</h1>
+
+<h1>Envio do profile de imagem do cliente</h1>
+<h1>
+  <img 
+    src="imagens/profile-cliente.gif"
   />
 </h1>
 
@@ -254,11 +264,10 @@ Ex: cd /home/name_user/Download/E-commerce-api/target</p>
 <p>Caso queira encerrar a execução do programa no terminal pressione Ctrl+c</p>
 
 <br/>
-<h2>🧾 Para acessar a documentação localmente</h2>
-<p>Use essa URL no seu navegador :
-http://localhost:8080/swagger-ui.html</p>
+<h2>🧾 Para acessar a documentação</h2>
+<a href="https://heroku-e-commerce-api.herokuapp.com/swagger-ui.html" target="_blank">Clique aqui</a>
 <br/>
-
+<br/>
 <h2>📝 Licença</h2>
 <p> Este projeto está sob a licença do Apache License 2.0. Veja o arquivo<a href="https://www.apache.org/licenses/LICENSE-2.0"> LICENCE </a>para maiores detalhes.</p>
 
